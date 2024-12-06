@@ -1,0 +1,451 @@
+---
+title: "Psy 1901 Final"
+author: "Sungjoo Yoon"
+date: "2024-11-27"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if (!require(car)) {install.packages("car"); require(car)}
+if (!require(pwr)) {install.packages("pwr"); require(pwr)}
+if (!require(effsize)) {install.packages("effsize"); require(effsize)}
+if (!require(lsr)) {install.packages("lsr"); require(lsr)}
+if (!require(corrplot)) {install.packages("corrplot"); require(corrplot)}
+if (!require(lm.beta)) {install.packages("lm.beta"); require(lm.beta)}
+if (!require(lme4)) {install.packages("lme4"); require(lme4)}
+if (!require(effects)) {install.packages("effects"); require(effects)}
+if (!require(psych)) {install.packages("psych"); require(psych)}
+if (!require(ggplot2)) {install.packages("ggplot2"); require(ggplot2)}
+if (!require(tidyverse)) {install.packages("tidyverse"); require(tidyverse)}
+if (!require(knitr)) {install.packages("knitr"); require(knitr)}
+if (!require(gt)) {install.packages("gt"); require(gt)}
+```
+
+## Data wrangling
+```{r}
+## load data remove unnecessary rows
+all.data <- read.csv("Test Data 1125.csv") 
+all.data <- all.data[-c(1, 2), ]
+
+# combine columns E1, E2, E3, E4 into one vector
+External_score <- unlist(all.data[, c("E1.", "E2", "E3", "E4")])
+External_score <- as.numeric(External_score)
+External_score <- External_score[!is.na(External_score)]
+print(External_score)
+
+# combine columns I1, I2, I3, I4 into one vector
+Internal_score <- unlist(all.data[, c("I1", "I2", "I3", "I4")])
+Internal_score <- as.numeric(Internal_score)
+Internal_score <- Internal_score[!is.na(Internal_score)]
+print(Internal_score)
+
+# Combine values from columns Q5, Q6, Q7, Q8, Q9, Q10, Q5.1, Q6.1, Q7.1, Q8.1, Q9.1, Q10.1 into one vector
+Filler_score <- unlist(all.data[, c("Q5", "Q6", "Q7", "Q8", "Q9", "Q10", "Q5.1", "Q6.1", "Q7.1", "Q8.1", "Q9.1", "Q10.1")])
+Filler_score <- as.numeric(Filler_score)
+Filler_score <- Filler_score[!is.na(Filler_score)]
+print(Filler_score)
+
+# drop incomplete
+all.data <- all.data[!(is.na(all.data$I4) & is.na(all.data$E4) | 
+                       (all.data$I4 == "" & all.data$E4 == "")), ]
+row.names(all.data) <- NULL
+
+# mutate for form version
+all.data <- all.data |>
+  mutate(form_version = case_when(
+    !is.na(I4) & I4 != "" ~ "A", # Assign "A" if I4 has a response
+    !is.na(E4) & E4 != "" ~ "B"  # Assign "B" if E4 has a response
+  ))
+
+
+# create vars for scores based on question regardless of framing
+all.data <- all.data |>
+  mutate(
+    v1 = ifelse(!is.na(`E1.`) & `E1.` != "", `E1.`, I1)
+  )
+
+all.data <- all.data |>
+  mutate(
+    v2 = ifelse(!is.na(E2) & E2 != "", E2, I2)
+  )
+
+all.data <- all.data |>
+  mutate(
+    v3 = ifelse(!is.na(E3) & E3 != "", E3, I3)
+  )
+
+all.data <- all.data |>
+  mutate(
+    v4 = ifelse(!is.na(E4) & E4 != "", E4, I4)
+  )
+
+all.data <- all.data |>
+  mutate(across(c(v1, v2, v3, v4), ~ as.numeric(as.character(.))))
+```
+
+## Demographic data
+```{r}
+# Pulling counts, and countsd by demographic
+non_empty_I4 <- sum(!is.na(all.data$I4) & all.data$I4 != "")
+non_empty_E4 <- sum(!is.na(all.data$E4) & all.data$E4 != "")
+cat("Number of non-null/non-empty values in I4:", non_empty_I4, "\n")
+cat("Number of non-null/non-empty values in E4:", non_empty_E4, "\n")
+
+group1stats <- all.data |>
+  group_by(Q27) |>
+  summarize(Count = n(), .groups = 'drop') |>
+  mutate(Grade = case_when(
+    Q27 == 1 ~ "Sophomore",
+    Q27 == 2 ~ "Junior",
+    Q27 == 3 ~ "Senior",
+    TRUE ~ "Other"
+  ))
+
+group1stats <- group1stats |>
+  select(Grade, Count)
+
+all.data <- all.data |>
+  mutate(gender = case_when(
+    Q35 == 1 ~ "Male",
+    Q35 == 2 ~ "Female",
+    Q35 == 3 ~ "Nonbinary",
+    Q35 == 4 ~ "Prefer not to answer",
+    TRUE ~ "Unknown"  # Handles unexpected or missing values
+  ))
+
+all.data <- all.data |>
+  mutate(Grade = case_when(
+    Q27 == 1 ~ "Sophomore",
+    Q27 == 2 ~ "Junior",
+    Q27 == 3 ~ "Senior",
+    TRUE ~ "Unknown"
+  ))
+```
+
+```{r}
+# demographics by form version
+gender_stats_by_form <- all.data |>
+  group_by(form_version, Q35) |>
+  summarize(
+    Count = n(),                            
+    .groups = 'drop'                          
+  ) |>
+  group_by(form_version) |>
+  mutate(
+    Proportion = Count / sum(Count) * 100,    
+    Gender = case_when(                       
+      Q35 == 1 ~ "Male",
+      Q35 == 2 ~ "Female",
+      Q35 == 3 ~ "Non-binary/Third Gender",
+      Q35 == 4 ~ "Prefer not to say",
+      TRUE ~ "Unknown"
+    )
+  ) |>
+  select(form_version, Gender, Count, Proportion) 
+
+```
+
+## Power analysis
+```{r}
+# "a priori" power calculation
+pwr.r.test(r = .2, power = .80, sig.level = .05, alternative = "greater")
+
+# "observed"/post hoc power calculation for correlation
+pwr.r.test(n = dim(all.data)[1], r = 0.3, sig.level = .05, alternative = "greater") 
+```
+
+## t-tests
+```{r}
+# pooled data on global level
+t_test_result1 <- t.test(Internal_score, External_score, var.equal = TRUE)
+print(t_test_result1)
+t_test_result2 <- t.test(External_score, Filler_score)
+print(t_test_result2)
+t_test_result3 <- t.test(Internal_score, Filler_score)
+print(t_test_result3)
+
+# effect sizes
+External_score <- na.omit(External_score)
+Internal_score <- na.omit(Internal_score)
+External_score <- as.numeric(External_score)
+Internal_score <- as.numeric(Internal_score)
+d <- cohensD(External_score, Internal_score)
+print(d)
+```
+
+```{r}
+# Levenes for t-test type
+library(car)  
+
+levene_test_result1 <- leveneTest(v1 ~ form_version, data = all.data)
+levene_test_result2 <- leveneTest(v2 ~ form_version, data = all.data)
+levene_test_result3 <- leveneTest(v3 ~ form_version, data = all.data)
+levene_test_result4 <- leveneTest(v4 ~ form_version, data = all.data)
+
+print(levene_test_result1)
+print(levene_test_result2)
+print(levene_test_result3)
+print(levene_test_result4)
+
+```
+
+## t test for local level data
+```{r}
+external_vector1 <- all.data$E1.[!is.na(all.data$E1.)] |> as.numeric()
+external_vector2 <- all.data$E2[!is.na(all.data$E2)] |> as.numeric()
+external_vector3 <- all.data$E3[!is.na(all.data$E3)] |> as.numeric()
+external_vector4 <- all.data$E4[!is.na(all.data$E4)] |> as.numeric()
+
+internal_vector1 <- all.data$I1[!is.na(all.data$I1)] |> as.numeric()
+internal_vector2 <- all.data$I2[!is.na(all.data$I2)] |> as.numeric()
+internal_vector3 <- all.data$I3[!is.na(all.data$I3)] |> as.numeric()
+internal_vector4 <- all.data$I4[!is.na(all.data$I4)] |> as.numeric()
+
+t_test_result1 <- t.test(internal_vector1, external_vector1, var.equal = TRUE)
+t_test_result2 <- t.test(internal_vector2, external_vector2, var.equal = TRUE)
+t_test_result3 <- t.test(internal_vector3, external_vector3, var.equal = TRUE)
+t_test_result4 <- t.test(internal_vector4, external_vector4, var.equal = TRUE)
+
+d1 <- cohensD(external_vector1, internal_vector1)
+d2 <- cohensD(external_vector2, internal_vector2)
+d3 <- cohensD(external_vector3, internal_vector3)
+d4 <- cohensD(external_vector4, internal_vector4)
+
+print(t_test_result1)
+print(t_test_result2)
+print(t_test_result3)
+print(t_test_result4)
+
+print(d1)
+print(d2)
+print(d3)
+print(d4)
+
+sd(internal_vector1, na.rm = TRUE)
+sd(external_vector1, na.rm = TRUE)
+sd(internal_vector2, na.rm = TRUE)
+sd(external_vector2, na.rm = TRUE)
+sd(internal_vector3, na.rm = TRUE)
+sd(external_vector3, na.rm = TRUE)
+sd(internal_vector4, na.rm = TRUE)
+sd(external_vector4, na.rm = TRUE)
+```
+
+```{r}
+# one more t-test for pooled absent manipulation 3
+# combine columns E1, E2, E4 into new vector
+External_score_absent3 <- unlist(all.data[, c("E1.", "E2", "E4")])
+External_score_absent3 <- as.numeric(External_score_absent3)
+External_score_absent3 <- External_score_absent3[!is.na(External_score_absent3)]
+
+# combine columns I1, I2, I4 into new vector
+Internal_score_absent3 <- unlist(all.data[, c("I1", "I2", "I4")])
+Internal_score_absent3 <- as.numeric(Internal_score_absent3)
+Internal_score_absent3 <- Internal_score_absent3[!is.na(Internal_score_absent3)]
+
+t_test_result_absent3 <- t.test(Internal_score_absent3, External_score_absent3, var.equal = TRUE)
+print(t_test_result_absent3)
+```
+
+
+```{r}
+# pull stats
+t_test_result1 <- t.test(External_score, Internal_score)
+
+t_table <- tibble::tibble(
+  Statistic = round(t_test_result1$statistic, 2),
+  `Degrees of Freedom` = round(t_test_result1$parameter, 2),
+  `p-value` = ifelse(t_test_result1$p.value < 0.001, "< 0.001", round(t_test_result1$p.value, 3)),
+  `Mean Difference` = round(t_test_result1$estimate[1] - t_test_result1$estimate[2], 2),
+  `95% CI Lower` = round(t_test_result1$conf.int[1], 2),
+  `95% CI Upper` = round(t_test_result1$conf.int[2], 2)
+)
+
+library(gt)
+formatted_table <- t_table |>
+  gt() |>
+  tab_header(
+    title = "Self-Reported Satisfaction by Perceived Agency",
+    subtitle = "Comparing Valence Scores between Internal and External Framing"
+  ) |>
+  fmt_number(columns = c(Statistic, `Mean Difference`), decimals = 2) |>  # Corrected column name
+  tab_options(
+    table.font.size = "small",
+    heading.align = "center"
+  )
+
+formatted_table
+
+```
+
+```{r}
+# subgroup analysis counts+anovas to check for demographic level disparities
+all.data.aov <- all.data |>
+  filter(Q27 != 3)
+
+subgroup_analysis_gender <- all.data.aov |>
+  group_by(gender) |> 
+  summarise(
+    mean_satisfaction_1 = mean(v1, na.rm = TRUE),
+    mean_satisfaction_2 = mean(v2, na.rm = TRUE),
+    mean_satisfaction_3 = mean(v3, na.rm = TRUE),
+    mean_satisfaction_4 = mean(v4, na.rm = TRUE),
+    sd_satisfaction_1 = sd(v1, na.rm = TRUE),
+    sd_satisfaction_2 = sd(v2, na.rm = TRUE),
+    sd_satisfaction_3 = sd(v3, na.rm = TRUE),
+    sd_satisfaction_4 = sd(v4, na.rm = TRUE),
+    n = n()  
+  )
+
+summary(aov(v1 ~ gender, data = all.data.aov))
+summary(aov(v2 ~ gender, data = all.data.aov))
+summary(aov(v3 ~ gender, data = all.data.aov))
+summary(aov(v4 ~ gender, data = all.data.aov))
+
+subgroup_analysis_class <- all.data |>
+  group_by(Grade) |>  
+  summarise(
+    mean_satisfaction_1 = mean(v1, na.rm = TRUE),
+    mean_satisfaction_2 = mean(v2, na.rm = TRUE),
+    mean_satisfaction_3 = mean(v3, na.rm = TRUE),
+    mean_satisfaction_4 = mean(v4, na.rm = TRUE),
+    sd_satisfaction_1 = sd(v1, na.rm = TRUE),
+    sd_satisfaction_2 = sd(v2, na.rm = TRUE),
+    sd_satisfaction_3 = sd(v3, na.rm = TRUE),
+    sd_satisfaction_4 = sd(v4, na.rm = TRUE),
+    n = n()  
+  )
+
+summary(aov(v1 ~ Grade, data = all.data))
+summary(aov(v2 ~ Grade, data = all.data))
+summary(aov(v3 ~ Grade, data = all.data))
+summary(aov(v4 ~ Grade, data = all.data))
+```
+
+## Visualizations
+
+```{r}
+# mutate to categorize by internal or external response to given q
+all.data$ei1 <- ifelse(!is.na(all.data$E1.) & all.data$E1. != "", "external", "internal")
+all.data$ei2 <- ifelse(!is.na(all.data$E2) & all.data$E2 != "", "external", "internal")
+all.data$ei3 <- ifelse(!is.na(all.data$E3) & all.data$E3 != "", "external", "internal")
+all.data$ei4 <- ifelse(!is.na(all.data$E4) & all.data$E4 != "", "external", "internal")
+
+int_vector_1 <- all.data |>
+  filter(ei1 == "internal") |>
+  pull(v1)
+
+ext_vector_1 <- all.data |>
+  filter(ei1 == "external") |>
+  pull(v1)
+
+int_vector_2 <- all.data |>
+  filter(ei2 == "internal") |>
+  pull(v2)
+
+ext_vector_2 <- all.data |>
+  filter(ei2 == "external") |>
+  pull(v2)
+
+int_vector_3 <- all.data |>
+  filter(ei3 == "internal") |>
+  pull(v3)
+
+ext_vector_3 <- all.data |>
+  filter(ei3 == "external") |>
+  pull(v3)
+
+int_vector_4 <- all.data |>
+  filter(ei4 == "internal") |>
+  pull(v4)
+
+ext_vector_4 <- all.data |>
+  filter(ei4 == "external") |>
+  pull(v4)
+
+library(ggplot2)
+library(patchwork)
+
+plot_data <- list(
+  data.frame(Type = "External", Value = int_vector_1, Group = "Group 1"), # Corrected Type
+  data.frame(Type = "Internal", Value = ext_vector_1, Group = "Group 1"), # Corrected Type
+  data.frame(Type = "External", Value = int_vector_2, Group = "Group 2"), # Corrected Type
+  data.frame(Type = "Internal", Value = ext_vector_2, Group = "Group 2"), # Corrected Type
+  data.frame(Type = "External", Value = int_vector_3, Group = "Group 3"), # Corrected Type
+  data.frame(Type = "Internal", Value = ext_vector_3, Group = "Group 3"), # Corrected Type
+  data.frame(Type = "External", Value = int_vector_4, Group = "Group 4"), # Corrected Type
+  data.frame(Type = "Internal", Value = ext_vector_4, Group = "Group 4")  # Corrected Type
+)
+
+combined_data <- do.call(rbind, plot_data)
+value_limits <- range(combined_data$Value, na.rm = TRUE)
+combined_data$Type <- factor(combined_data$Type, levels = c("Internal", "External"))
+
+# box whisker plot discussion viz
+
+create_plot <- function(group_name, new_label) {
+  ggplot(combined_data[combined_data$Group == group_name, ], aes(x = Type, y = Value, fill = Type)) +
+    geom_boxplot() +
+    labs(title = new_label, x = NULL, y = "Satisfaction Score") +
+    scale_fill_manual(values = c("Internal" = "skyblue", "External" = "orange")) +
+    coord_cartesian(ylim = value_limits) + # Consistent y-axis range
+    theme_minimal() +
+    theme(legend.position = "none")
+}
+
+plot1 <- create_plot("Group 1", "Manipulation 1")
+plot2 <- create_plot("Group 2", "Manipulation 2")
+plot3 <- create_plot("Group 3", "Manipulation 3")
+plot4 <- create_plot("Group 4", "Manipulation 4")
+
+library(patchwork)
+final_plot <- (plot1 + plot2 + plot3 + plot4) +
+  plot_layout(ncol = 4) +
+  plot_annotation(title = "Box-and-Whisker Plots, Satisfaction Score by Framing Type and Manipulation", theme = theme(plot.title = element_text(hjust = 0.5)))
+
+print(final_plot)
+
+ggsave("box00.png", final_plot)
+
+
+```
+
+```{r}
+# scatteplot discussion viz
+value_limits <- range(combined_data$Value, na.rm = TRUE) + c(-0.5, 0.5)
+
+create_scatterplot <- function(data_subset, manipulation_label) {
+  ggplot(data_subset, aes(x = Group, y = Value, color = Type)) +
+    geom_jitter(width = 0.2, size = 2, alpha = 0.7) + 
+    labs(x = manipulation_label, y = "Sat. Score", color = "Framing Type") + 
+    scale_color_manual(values = c("Internal" = "skyblue", "External" = "orange")) +
+    coord_cartesian(ylim = value_limits) + 
+    theme_minimal() +
+    theme(axis.text.x = element_blank(), 
+          axis.ticks.x = element_blank(),
+          legend.position = "side") 
+}
+
+scatterplots <- list(
+  create_scatterplot(subset(combined_data, Group == "Group 1" & Type == "Internal"), "Manipulation 1"),
+  create_scatterplot(subset(combined_data, Group == "Group 1" & Type == "External"), "Manipulation 1"),
+  create_scatterplot(subset(combined_data, Group == "Group 2" & Type == "Internal"), "Manipulation 2"),
+  create_scatterplot(subset(combined_data, Group == "Group 2" & Type == "External"), "Manipulation 2"),
+  create_scatterplot(subset(combined_data, Group == "Group 3" & Type == "Internal"), "Manipulation 3"),
+  create_scatterplot(subset(combined_data, Group == "Group 3" & Type == "External"), "Manipulation 3"),
+  create_scatterplot(subset(combined_data, Group == "Group 4" & Type == "Internal"), "Manipulation 4"),
+  create_scatterplot(subset(combined_data, Group == "Group 4" & Type == "External"), "Manipulation 4")
+)
+
+scatter_plot_grid <- wrap_plots(scatterplots, ncol = 4) +
+  plot_annotation(
+    title = "Scatterplots for Satisfaction Scores by Framing Type and Manipulation",
+    theme = theme(plot.title = element_text(hjust = 0.5, size = 14)) 
+  )
+
+print(scatter_plot_grid)
+ggsave("scatterplots_grid.png", scatter_plot_grid, width = 10, height = 8, units = "in", dpi = 800)
+
+```
+

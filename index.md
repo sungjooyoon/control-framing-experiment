@@ -33,7 +33,7 @@ if (!require(markdown)) {install.packages("markdown"); require(markdown)}
 # Introduction
 Limited research exists analyzing the relationship between control-based framing and its effect on self-reported valence. In other words, there is a gap in understanding how presenting information as stemming from internal or external influences shapes individuals' emotional evaluations and judgments of positivity or negativity toward a given subject. This paper attempts to bridge that gap, by conducting an experiment to isolate said relationship between perceived agency and valence. It does so as the implications of these conclusions extend beyond academic exercise—it influences how we think about the role of agency in everything from healthcare interventions to economic decision-making. Simply put, these conclusions can be strategically utilized, as influencing perceptions and emotional responses is critical to driving desired outcomes in various fields; from design of public policy to private savings.
 
-# Literature Review
+# Literature review
 Existing research in the literature has long investigated the effect of framing on respondents' perceptions, decision-making processes, and subsequent behaviors. For example, studies have focused on the effect of gain and loss framing to measure individuals’ differential risk tolerance (Tversky & Kahneman, 1981; Li & Xie, 2006). Other studies have investigated the effect of valence in framing on valence in responses, such as questions loaded with framing related to perceived security or stress (Bloem, 2024; Guyatt et al., 1999). Research has even investigated and established how individuals allocate material resources and make decisions in response to the type of control they are primed with (Razak, 2019). This framing-related research has been employed to develop interventions and strategies aimed at influencing behavior in practical applications, and our research is geared to continue this trend and further this domain.
 
 Similarly, the literature has also long investigated the importance of the locus of control—that is, the degree to which individuals believe that they, and not external forces, can exert influence over outcomes in their lives. Said domain of research is relevant as it sheds light on how perceptions of agency influence emotional responses, behavior, and overall psychological well-being in various contexts. For example and most notably, research has held that an internal locus of control is related to greater levels of well-being and mental health (Kesavayuth et al., 2022; Eren et al., 2023; Jain & Singh, 2015). Relatedly, research on the relationship between locus of control and health outcomes has found a strong association between perceived control and positive outcomes, mechanized and mediated by self-control (Botha and Dahmann, 2023). Studies on the locus of control have even investigated how it affects employee performance, finding that it mediates the relationship between expectations of leadership and creativity in one’s role (Xu et al., 2022). And in the domain of consumer preferences, perceived control has even been found to affect purchasing patterns for services such as supplementary health insurance (Bonsang & Costa-Font, 2022).
@@ -246,7 +246,6 @@ pwr.r.test(n = dim(all.data)[1], r = 0.3, sig.level = .05, alternative = "greate
 ##     alternative = greater
 ```
 
-Procedure:
 Procedurally, each participant completed the study in three stages: consent, questionnaire completion, and debriefing. To begin, participants were provided a consent agreement. Upon arriving at the study website hosted on Qualtrics, participants were informed of the voluntary nature of the experiment, and their ability to decline participation at any time. Participants were then informed of the purpose of the study in broad terms, without revealing the specific hypothesis about control-based framing. Finally, they were informed of the study’s format and their associated rights (time required, risks associated, benefits, compensation, confidentiality, and contact information for further questions). Only participants who provided electronic consent were allowed to proceed.
 
 Eligible participants then proceeded to the questionnaire segment, starting with the collection of demographic information (details regarding their residential house, class year, and gender). Subsequently, participants were then randomly assigned to be shown one of the two versions of the questionnaire, and informed of how to answer the questionnaire (e.g. “For these next questions, please move the slider based on your satisfaction”). Both questionnaires consisted of ten items, with six of these items as filler questions intended to mask the purpose of the study, and four items manipulated for the purpose of the experiment. In both versions of the questionnaire, the content of the four manipulated items was identical, but the framing differed systematically. The first version presented three items framed with an internal locus of control, and the other three with an external locus of control. The second version reversed these framings along each item, ensuring that all respondents were exposed to the same content, with the only variation being the perspective from which the questions were presented. The manipulated items were counterbalanced across the two questionnaires such that the participants responded to internal-framed and external-framed items in alternating order, with half of the participants starting with internally-framed items and the other half with externally-framed items—all to minimize potential order effects.
@@ -435,172 +434,6 @@ d1 <- cohensD(external_vector1, internal_vector1)
 d2 <- cohensD(external_vector2, internal_vector2)
 d3 <- cohensD(external_vector3, internal_vector3)
 d4 <- cohensD(external_vector4, internal_vector4)
-
-print(t_test_result1)
-```
-
-```
-## 
-## 	Two Sample t-test
-## 
-## data:  internal_vector1 and external_vector1
-## t = -0.42242, df = 82, p-value = 0.6738
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.4145209  0.2693138
-## sample estimates:
-## mean of x mean of y 
-##  4.439024  4.511628
-```
-
-```r
-print(t_test_result2)
-```
-
-```
-## 
-## 	Two Sample t-test
-## 
-## data:  internal_vector2 and external_vector2
-## t = 1.5969, df = 82, p-value = 0.1141
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.07624234  0.69677552
-## sample estimates:
-## mean of x mean of y 
-##  4.139535  3.829268
-```
-
-```r
-print(t_test_result3)
-```
-
-```
-## 
-## 	Two Sample t-test
-## 
-## data:  internal_vector3 and external_vector3
-## t = 4.0629, df = 82, p-value = 0.0001104
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  0.5627653 1.6425665
-## sample estimates:
-## mean of x mean of y 
-##  3.707317  2.604651
-```
-
-```r
-print(t_test_result4)
-```
-
-```
-## 
-## 	Two Sample t-test
-## 
-## data:  internal_vector4 and external_vector4
-## t = -0.29068, df = 82, p-value = 0.772
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.6540030  0.4872418
-## sample estimates:
-## mean of x mean of y 
-##  3.209302  3.292683
-```
-
-```r
-print(d1)
-```
-
-```
-## [1] 0.09220497
-```
-
-```r
-print(d2)
-```
-
-```
-## [1] 0.3485726
-```
-
-```r
-print(d3)
-```
-
-```
-## [1] 0.8868455
-```
-
-```r
-print(d4)
-```
-
-```
-## [1] 0.06345036
-```
-
-```r
-sd(internal_vector1, na.rm = TRUE)
-```
-
-```
-## [1] 0.807737
-```
-
-```r
-sd(external_vector1, na.rm = TRUE)
-```
-
-```
-## [1] 0.7675593
-```
-
-```r
-sd(internal_vector2, na.rm = TRUE)
-```
-
-```
-## [1] 0.7740246
-```
-
-```r
-sd(external_vector2, na.rm = TRUE)
-```
-
-```
-## [1] 0.997558
-```
-
-```r
-sd(internal_vector3, na.rm = TRUE)
-```
-
-```
-## [1] 1.167131
-```
-
-```r
-sd(external_vector3, na.rm = TRUE)
-```
-
-```
-## [1] 1.311842
-```
-
-```r
-sd(internal_vector4, na.rm = TRUE)
-```
-
-```
-## [1] 1.319418
-```
-
-```r
-sd(external_vector4, na.rm = TRUE)
-```
-
-```
-## [1] 1.308509
 ```
 
 
@@ -664,23 +497,23 @@ formatted_table <- t_table |>
 formatted_table
 ```
 
-<!--html_preserve--><div id="xtscexleyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xtscexleyv table {
+<!--html_preserve--><div id="rgebydjcby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rgebydjcby table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xtscexleyv thead, #xtscexleyv tbody, #xtscexleyv tfoot, #xtscexleyv tr, #xtscexleyv td, #xtscexleyv th {
+#rgebydjcby thead, #rgebydjcby tbody, #rgebydjcby tfoot, #rgebydjcby tr, #rgebydjcby td, #rgebydjcby th {
   border-style: none;
 }
 
-#xtscexleyv p {
+#rgebydjcby p {
   margin: 0;
   padding: 0;
 }
 
-#xtscexleyv .gt_table {
+#rgebydjcby .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -706,12 +539,12 @@ formatted_table
   border-left-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_caption {
+#rgebydjcby .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xtscexleyv .gt_title {
+#rgebydjcby .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -723,7 +556,7 @@ formatted_table
   border-bottom-width: 0;
 }
 
-#xtscexleyv .gt_subtitle {
+#rgebydjcby .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -735,7 +568,7 @@ formatted_table
   border-top-width: 0;
 }
 
-#xtscexleyv .gt_heading {
+#rgebydjcby .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -747,13 +580,13 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_bottom_border {
+#rgebydjcby .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_col_headings {
+#rgebydjcby .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -768,7 +601,7 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_col_heading {
+#rgebydjcby .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -788,7 +621,7 @@ formatted_table
   overflow-x: hidden;
 }
 
-#xtscexleyv .gt_column_spanner_outer {
+#rgebydjcby .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -800,15 +633,15 @@ formatted_table
   padding-right: 4px;
 }
 
-#xtscexleyv .gt_column_spanner_outer:first-child {
+#rgebydjcby .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xtscexleyv .gt_column_spanner_outer:last-child {
+#rgebydjcby .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xtscexleyv .gt_column_spanner {
+#rgebydjcby .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -820,11 +653,11 @@ formatted_table
   width: 100%;
 }
 
-#xtscexleyv .gt_spanner_row {
+#rgebydjcby .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xtscexleyv .gt_group_heading {
+#rgebydjcby .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -850,7 +683,7 @@ formatted_table
   text-align: left;
 }
 
-#xtscexleyv .gt_empty_group_heading {
+#rgebydjcby .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -865,15 +698,15 @@ formatted_table
   vertical-align: middle;
 }
 
-#xtscexleyv .gt_from_md > :first-child {
+#rgebydjcby .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xtscexleyv .gt_from_md > :last-child {
+#rgebydjcby .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xtscexleyv .gt_row {
+#rgebydjcby .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -892,7 +725,7 @@ formatted_table
   overflow-x: hidden;
 }
 
-#xtscexleyv .gt_stub {
+#rgebydjcby .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -905,7 +738,7 @@ formatted_table
   padding-right: 5px;
 }
 
-#xtscexleyv .gt_stub_row_group {
+#rgebydjcby .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -919,15 +752,15 @@ formatted_table
   vertical-align: top;
 }
 
-#xtscexleyv .gt_row_group_first td {
+#rgebydjcby .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xtscexleyv .gt_row_group_first th {
+#rgebydjcby .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xtscexleyv .gt_summary_row {
+#rgebydjcby .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -937,16 +770,16 @@ formatted_table
   padding-right: 5px;
 }
 
-#xtscexleyv .gt_first_summary_row {
+#rgebydjcby .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_first_summary_row.thick {
+#rgebydjcby .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xtscexleyv .gt_last_summary_row {
+#rgebydjcby .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -956,7 +789,7 @@ formatted_table
   border-bottom-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_grand_summary_row {
+#rgebydjcby .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -966,7 +799,7 @@ formatted_table
   padding-right: 5px;
 }
 
-#xtscexleyv .gt_first_grand_summary_row {
+#rgebydjcby .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -976,7 +809,7 @@ formatted_table
   border-top-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_last_grand_summary_row_top {
+#rgebydjcby .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -986,11 +819,11 @@ formatted_table
   border-bottom-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_striped {
+#rgebydjcby .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xtscexleyv .gt_table_body {
+#rgebydjcby .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -999,7 +832,7 @@ formatted_table
   border-bottom-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_footnotes {
+#rgebydjcby .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1013,7 +846,7 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_footnote {
+#rgebydjcby .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1022,7 +855,7 @@ formatted_table
   padding-right: 5px;
 }
 
-#xtscexleyv .gt_sourcenotes {
+#rgebydjcby .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1036,7 +869,7 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#xtscexleyv .gt_sourcenote {
+#rgebydjcby .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1044,72 +877,72 @@ formatted_table
   padding-right: 5px;
 }
 
-#xtscexleyv .gt_left {
+#rgebydjcby .gt_left {
   text-align: left;
 }
 
-#xtscexleyv .gt_center {
+#rgebydjcby .gt_center {
   text-align: center;
 }
 
-#xtscexleyv .gt_right {
+#rgebydjcby .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xtscexleyv .gt_font_normal {
+#rgebydjcby .gt_font_normal {
   font-weight: normal;
 }
 
-#xtscexleyv .gt_font_bold {
+#rgebydjcby .gt_font_bold {
   font-weight: bold;
 }
 
-#xtscexleyv .gt_font_italic {
+#rgebydjcby .gt_font_italic {
   font-style: italic;
 }
 
-#xtscexleyv .gt_super {
+#rgebydjcby .gt_super {
   font-size: 65%;
 }
 
-#xtscexleyv .gt_footnote_marks {
+#rgebydjcby .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xtscexleyv .gt_asterisk {
+#rgebydjcby .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xtscexleyv .gt_indent_1 {
+#rgebydjcby .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xtscexleyv .gt_indent_2 {
+#rgebydjcby .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xtscexleyv .gt_indent_3 {
+#rgebydjcby .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xtscexleyv .gt_indent_4 {
+#rgebydjcby .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xtscexleyv .gt_indent_5 {
+#rgebydjcby .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xtscexleyv .katex-display {
+#rgebydjcby .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xtscexleyv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rgebydjcby div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1426,22 +1259,36 @@ These findings challenge the idea that perceived agency in framing is a reliable
 
 # References:
 Bloem, J. R., & Khandker Wahedur Rahman. (2024). What I say depends on how you ask: Experimental evidence of the effect of framing on the measurement of attitudes. Economics Letters, 238, 111686–111686. https://doi.org/10.1016/j.econlet.2024.111686
+
 Blyth, C. R. (1972). On Simpson’s Paradox and the Sure-Thing Principle. Journal of the American Statistical Association, 67(338), 364–366. https://doi.org/10.2307/2284382
+
 Bonsang, E., & Costa-Font, J. (2022). Buying control? “Locus of control” and the uptake of supplementary health insurance. Journal of Economic Behavior & Organization, 204, 476–489. https://doi.org/10.1016/j.jebo.2022.10.035
+
 Botha, F., & Dahmann, S. C. (2024). Locus of control, self-control, and health outcomes. SSM-Population Health, 25, 101566–101566. https://doi.org/10.1016/j.ssmph.2023.101566
+
 Eren, F., Kousignian, I., Solène Wallez, Melchior, M., & Murielle Mary-Krause. (2023). Association between individuals’ locus of control and mental health during the COVID-19 pandemic. Journal of Affective Disorders Reports, 14. https://doi.org/10.1016/j.jadr.2023.100678
+
 Guyatt, G. H., Cook, D. J., King, D., Norman, G. R., Kane, S. L., & van Ineveld, C. (1999). Effect of the framing of questionnaire items regarding satisfaction with training on residents’ responses. Academic Medicine: Journal of the Association of American Medical Colleges, 74(2), 192–194. https://doi.org/10.1097/00001888-199902000-00018
+
 Jain, M., & Singh, S. (2015). Locus of control and its relationship with mental health and adjustment among adolescent females. Journal of Mental Health and Human Behaviour, 20(1), 16. https://doi.org/10.4103/0971-8990.164803
+
 Jiao, J., & Zhao, J. (2023). Individualism, Collectivism, and Allocation Behavior: Evidence from the Ultimatum Game and Dictator Game. Behavioral Sciences, 13(2), 169. https://doi.org/10.3390/bs13020169
+
 Kesavayuth, D., Binh Tran, D., & Zikos, V. (2022). Locus of control and subjective well-being: Panel evidence from Australia. PLOS ONE, 17(8). https://doi.org/10.1371/journal.pone.0272714
+
 Leotti, L. A., Iyengar, S. S., & Ochsner, K. N. (2010). Born to choose: The origins and value of the need for control. Trends in Cognitive Sciences, 14(10), 457–463. https://doi.org/10.1016/j.tics.2010.08.001
+
 Levene, H. (1960). Robust Tests for the Equality of Variances. In Contributions to Probability and Statistics: Essays in Honor of Harold Hotelling (1st ed., pp. 278–292). Stanford University Press; Stanford Un. https://epubs.siam.org/doi/10.1137/1003016
+
 Li, S., & Xie, X. (2006). A new look at the “Asian disease” problem: A choice between the best possible outcomes or between the worst possible outcomes?. Thinking & Reasoning, 12(2), 129–143. https://doi.org/10.1080/13546780500145652
+
 Razak, L. A. (2019, August 1). Effect of Framing and Locus of Control on Commitment Escalation in Investment Decisions. Www.atlantis-Press.com; Atlantis Press. https://doi.org/10.2991/icame-18.2019.27
+
 Tversky, A., & Kahneman, D. (1981). The framing of decisions and the psychology of choice. Science, 211(4481), 453–458. https://www.jstor.org/stable/1685855
+
 Xu, L., Liu, Z., Ji, M., Dong, Y., & Wu, C.-H. (2021). Leader Perfectionism—Friend or Foe of Employee Creativity? Locus of Control as a Key Contingency. Academy of Management Journal, 65(6). https://doi.org/10.5465/amj.2019.0165
 
-## pages integration/index.html generator script
+# Pages integration/index.html generator script
 
 
 ```r

@@ -58,8 +58,8 @@ print(External_score)
 ```
 
 ```
-##   [1] 5 5 5 5 5 5 4 5 5 5 5 4 4 4 5 5 3 5 5 4 5 5 5 4 5 5 4 5 5 5 5 5 3 5 4 4 5 5 4 5 3 2 3 3 4 4 4 4 4 4 5 3 4 5 4 4 2 5 3 5 3 3 5 4 4 5 1 4 4 5 4 3 3 4 2 5 3 4 5 5 4 2 5 3 4 3 2 2 1 2 2 2 2 4 5 2 3 4 3 4 2 2 1 2 5 4 1 3 3 2 2 1 2 1 2 2 4 1 2 4
-## [121] 5 1 5 1 3 5 1 2 2 4 3 1 1 2 4 4 2 2 4 4 2 4 2 5 5 4 5 4 4 4 4 4 3 5 5 4 3 5 1 2 3 1 1 5 4 4 4 3
+##   [1] 5 5 5 5 5 5 4 5 5 5 5 4 4 4 5 5 3 5 5 4 5 5 5 4 5 5 4 5 5 5 5 5 3 5 4 4 5 5 4 5 3 2 3 3 4 4 4 4 4 4 5 3 4 5 4 4 2 5 3 5 3 3 5 4 4 5 1 4 4 5 4 3 3 4 2 5 3 4 5 5 4 2 5 3 4 3 2 2 1 2 2 2 2 4 5 2 3 4 3 4 2 2 1 2 5 4 1
+## [108] 3 3 2 2 1 2 1 2 2 4 1 2 4 5 1 5 1 3 5 1 2 2 4 3 1 1 2 4 4 2 2 4 4 2 4 2 5 5 4 5 4 4 4 4 4 3 5 5 4 3 5 1 2 3 1 1 5 4 4 4 3
 ```
 
 ```r
@@ -71,8 +71,8 @@ print(Internal_score)
 ```
 
 ```
-##   [1] 5 4 5 4 4 5 4 5 5 4 5 5 4 2 4 5 5 3 3 2 5 5 5 5 4 5 5 5 5 5 5 4 4 4 4 5 5 5 5 5 4 5 4 5 4 3 4 4 5 2 5 5 4 4 5 3 4 4 5 4 4 5 3 4 4 5 5 4 5 5 3 5 5 4 5 3 4 4 4 4 4 4 3 3 2 4 5 3 5 2 2 4 2 3 3 5 2 2 5 4 5 5 3 4 2 3 2 5 4 5 4 5 5 3 5 5 3 3 4 4
-## [121] 5 2 4 4 5 4 2 4 3 4 2 4 2 5 1 4 4 3 4 4 1 3 4 4 4 5 5 1 3 4 1 5 2 5 4 4 4 4 4 3 5 1 2 1 3 2 1 3
+##   [1] 5 4 5 4 4 5 4 5 5 4 5 5 4 2 4 5 5 3 3 2 5 5 5 5 4 5 5 5 5 5 5 4 4 4 4 5 5 5 5 5 4 5 4 5 4 3 4 4 5 2 5 5 4 4 5 3 4 4 5 4 4 5 3 4 4 5 5 4 5 5 3 5 5 4 5 3 4 4 4 4 4 4 3 3 2 4 5 3 5 2 2 4 2 3 3 5 2 2 5 4 5 5 3 4 2 3 2
+## [108] 5 4 5 4 5 5 3 5 5 3 3 4 4 5 2 4 4 5 4 2 4 3 4 2 4 2 5 1 4 4 3 4 4 1 3 4 4 4 5 5 1 3 4 1 5 2 5 4 4 4 4 4 3 5 1 2 1 3 2 1 3
 ```
 
 ```r
@@ -84,11 +84,11 @@ print(Filler_score)
 ```
 
 ```
-##   [1] 5 3 5 5 4 5 5 4 5 5 4 5 5 5 4 5 3 5 5 4 5 3 4 5 4 5 5 5 5 5 5 4 3 5 4 4 5 4 4 4 5 4 5 4 2 4 4 3 3 3 3 4 3 2 4 3 5 3 2 3 5 4 4 1 1 4 4 4 4 4 4 5 4 3 3 3 3 3 3 1 3 4 2 3 3 5 3 5 5 4 4 5 5 4 4 5 5 5 5 5 5 4 5 5 5 4 5 5 5 5 5 3 3 5 5 4 5 3 5 5
-## [121] 3 5 5 5 4 5 4 4 5 1 1 1 3 3 2 2 1 2 2 1 3 2 1 1 2 3 2 2 2 1 3 3 1 2 4 2 2 2 2 3 3 2 5 2 3 1 2 1 1 1 2 1 4 5 5 3 5 4 3 4 4 5 2 4 5 2 4 2 4 5 4 4 4 3 4 5 5 3 5 5 3 5 5 4 4 1 4 4 1 4 5 4 5 2 5 4 4 5 4 4 3 2 4 2 4 4 3 4 4 2 2 4 4 4 4 3 1 4 5 4
-## [241] 5 4 5 4 5 4 4 3 5 3 3 5 4 5 4 2 4 5 4 5 4 5 4 5 4 4 5 4 5 5 5 5 5 3 5 4 5 4 5 5 5 2 4 5 4 5 3 4 4 5 5 5 4 4 5 5 1 4 4 3 3 3 4 4 3 4 3 4 5 3 4 4 2 4 3 4 2 4 4 4 4 4 4 4 3 4 4 5 4 4 4 3 4 3 4 5 5 5 5 4 4 4 3 4 5 5 5 5 5 5 5 5 4 5 3 5 5 5 5 4
-## [361] 3 4 4 5 4 5 5 3 5 4 4 5 5 5 4 5 5 5 2 5 4 1 3 2 3 1 2 2 2 2 1 1 1 2 1 2 1 1 2 1 4 3 1 2 2 2 1 4 3 3 3 2 1 2 2 1 1 5 2 5 1 1 5 5 4 3 4 5 3 5 5 4 4 4 4 4 4 4 5 2 4 2 4 4 4 5 4 5 4 4 3 4 5 4 5 5 3 3 5 4 5 2 5 2 5 4 4 2 5 2 4 5 4 2 4 4 1 3 4 5
-## [481] 4 3 5 4 2 5 2 4 4 4 4 4 4 2 2 4 4 2 3 5 4 4 2 5
+##   [1] 5 3 5 5 4 5 5 4 5 5 4 5 5 5 4 5 3 5 5 4 5 3 4 5 4 5 5 5 5 5 5 4 3 5 4 4 5 4 4 4 5 4 5 4 2 4 4 3 3 3 3 4 3 2 4 3 5 3 2 3 5 4 4 1 1 4 4 4 4 4 4 5 4 3 3 3 3 3 3 1 3 4 2 3 3 5 3 5 5 4 4 5 5 4 4 5 5 5 5 5 5 4 5 5 5 4 5
+## [108] 5 5 5 5 3 3 5 5 4 5 3 5 5 3 5 5 5 4 5 4 4 5 1 1 1 3 3 2 2 1 2 2 1 3 2 1 1 2 3 2 2 2 1 3 3 1 2 4 2 2 2 2 3 3 2 5 2 3 1 2 1 1 1 2 1 4 5 5 3 5 4 3 4 4 5 2 4 5 2 4 2 4 5 4 4 4 3 4 5 5 3 5 5 3 5 5 4 4 1 4 4 1 4 5 4 5 2
+## [215] 5 4 4 5 4 4 3 2 4 2 4 4 3 4 4 2 2 4 4 4 4 3 1 4 5 4 5 4 5 4 5 4 4 3 5 3 3 5 4 5 4 2 4 5 4 5 4 5 4 5 4 4 5 4 5 5 5 5 5 3 5 4 5 4 5 5 5 2 4 5 4 5 3 4 4 5 5 5 4 4 5 5 1 4 4 3 3 3 4 4 3 4 3 4 5 3 4 4 2 4 3 4 2 4 4 4 4
+## [322] 4 4 4 3 4 4 5 4 4 4 3 4 3 4 5 5 5 5 4 4 4 3 4 5 5 5 5 5 5 5 5 4 5 3 5 5 5 5 4 3 4 4 5 4 5 5 3 5 4 4 5 5 5 4 5 5 5 2 5 4 1 3 2 3 1 2 2 2 2 1 1 1 2 1 2 1 1 2 1 4 3 1 2 2 2 1 4 3 3 3 2 1 2 2 1 1 5 2 5 1 1 5 5 4 3 4 5
+## [429] 3 5 5 4 4 4 4 4 4 4 5 2 4 2 4 4 4 5 4 5 4 4 3 4 5 4 5 5 3 3 5 4 5 2 5 2 5 4 4 2 5 2 4 5 4 2 4 4 1 3 4 5 4 3 5 4 2 5 2 4 4 4 4 4 4 2 2 4 4 2 3 5 4 4 2 5
 ```
 
 ```r
@@ -131,6 +131,16 @@ all.data <- all.data |>
 ```
 
 Participants and demographic data:
+
+```r
+knitr::include_graphics("images/1_0.png")
+```
+
+<div class="figure">
+<img src="images/1_0.png" alt="plot of chunk unnamed-chunk-4" width="2736" />
+<p class="caption">plot of chunk unnamed-chunk-4</p>
+</div>
+
 
 ```r
 # Pulling counts, and countsd by demographic
@@ -497,23 +507,23 @@ formatted_table <- t_table |>
 formatted_table
 ```
 
-<!--html_preserve--><div id="rgebydjcby" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rgebydjcby table {
+<!--html_preserve--><div id="vfnvdkjodm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vfnvdkjodm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rgebydjcby thead, #rgebydjcby tbody, #rgebydjcby tfoot, #rgebydjcby tr, #rgebydjcby td, #rgebydjcby th {
+#vfnvdkjodm thead, #vfnvdkjodm tbody, #vfnvdkjodm tfoot, #vfnvdkjodm tr, #vfnvdkjodm td, #vfnvdkjodm th {
   border-style: none;
 }
 
-#rgebydjcby p {
+#vfnvdkjodm p {
   margin: 0;
   padding: 0;
 }
 
-#rgebydjcby .gt_table {
+#vfnvdkjodm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -539,12 +549,12 @@ formatted_table
   border-left-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_caption {
+#vfnvdkjodm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rgebydjcby .gt_title {
+#vfnvdkjodm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -556,7 +566,7 @@ formatted_table
   border-bottom-width: 0;
 }
 
-#rgebydjcby .gt_subtitle {
+#vfnvdkjodm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -568,7 +578,7 @@ formatted_table
   border-top-width: 0;
 }
 
-#rgebydjcby .gt_heading {
+#vfnvdkjodm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -580,13 +590,13 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_bottom_border {
+#vfnvdkjodm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_col_headings {
+#vfnvdkjodm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -601,7 +611,7 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_col_heading {
+#vfnvdkjodm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -621,7 +631,7 @@ formatted_table
   overflow-x: hidden;
 }
 
-#rgebydjcby .gt_column_spanner_outer {
+#vfnvdkjodm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -633,15 +643,15 @@ formatted_table
   padding-right: 4px;
 }
 
-#rgebydjcby .gt_column_spanner_outer:first-child {
+#vfnvdkjodm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rgebydjcby .gt_column_spanner_outer:last-child {
+#vfnvdkjodm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rgebydjcby .gt_column_spanner {
+#vfnvdkjodm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -653,11 +663,11 @@ formatted_table
   width: 100%;
 }
 
-#rgebydjcby .gt_spanner_row {
+#vfnvdkjodm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rgebydjcby .gt_group_heading {
+#vfnvdkjodm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -683,7 +693,7 @@ formatted_table
   text-align: left;
 }
 
-#rgebydjcby .gt_empty_group_heading {
+#vfnvdkjodm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -698,15 +708,15 @@ formatted_table
   vertical-align: middle;
 }
 
-#rgebydjcby .gt_from_md > :first-child {
+#vfnvdkjodm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rgebydjcby .gt_from_md > :last-child {
+#vfnvdkjodm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rgebydjcby .gt_row {
+#vfnvdkjodm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +735,7 @@ formatted_table
   overflow-x: hidden;
 }
 
-#rgebydjcby .gt_stub {
+#vfnvdkjodm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -738,7 +748,7 @@ formatted_table
   padding-right: 5px;
 }
 
-#rgebydjcby .gt_stub_row_group {
+#vfnvdkjodm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -752,15 +762,15 @@ formatted_table
   vertical-align: top;
 }
 
-#rgebydjcby .gt_row_group_first td {
+#vfnvdkjodm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rgebydjcby .gt_row_group_first th {
+#vfnvdkjodm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rgebydjcby .gt_summary_row {
+#vfnvdkjodm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -770,16 +780,16 @@ formatted_table
   padding-right: 5px;
 }
 
-#rgebydjcby .gt_first_summary_row {
+#vfnvdkjodm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_first_summary_row.thick {
+#vfnvdkjodm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rgebydjcby .gt_last_summary_row {
+#vfnvdkjodm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -789,7 +799,7 @@ formatted_table
   border-bottom-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_grand_summary_row {
+#vfnvdkjodm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -799,7 +809,7 @@ formatted_table
   padding-right: 5px;
 }
 
-#rgebydjcby .gt_first_grand_summary_row {
+#vfnvdkjodm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -809,7 +819,7 @@ formatted_table
   border-top-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_last_grand_summary_row_top {
+#vfnvdkjodm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -819,11 +829,11 @@ formatted_table
   border-bottom-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_striped {
+#vfnvdkjodm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rgebydjcby .gt_table_body {
+#vfnvdkjodm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -832,7 +842,7 @@ formatted_table
   border-bottom-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_footnotes {
+#vfnvdkjodm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -846,7 +856,7 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_footnote {
+#vfnvdkjodm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -855,7 +865,7 @@ formatted_table
   padding-right: 5px;
 }
 
-#rgebydjcby .gt_sourcenotes {
+#vfnvdkjodm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -869,7 +879,7 @@ formatted_table
   border-right-color: #D3D3D3;
 }
 
-#rgebydjcby .gt_sourcenote {
+#vfnvdkjodm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -877,72 +887,72 @@ formatted_table
   padding-right: 5px;
 }
 
-#rgebydjcby .gt_left {
+#vfnvdkjodm .gt_left {
   text-align: left;
 }
 
-#rgebydjcby .gt_center {
+#vfnvdkjodm .gt_center {
   text-align: center;
 }
 
-#rgebydjcby .gt_right {
+#vfnvdkjodm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rgebydjcby .gt_font_normal {
+#vfnvdkjodm .gt_font_normal {
   font-weight: normal;
 }
 
-#rgebydjcby .gt_font_bold {
+#vfnvdkjodm .gt_font_bold {
   font-weight: bold;
 }
 
-#rgebydjcby .gt_font_italic {
+#vfnvdkjodm .gt_font_italic {
   font-style: italic;
 }
 
-#rgebydjcby .gt_super {
+#vfnvdkjodm .gt_super {
   font-size: 65%;
 }
 
-#rgebydjcby .gt_footnote_marks {
+#vfnvdkjodm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rgebydjcby .gt_asterisk {
+#vfnvdkjodm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rgebydjcby .gt_indent_1 {
+#vfnvdkjodm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rgebydjcby .gt_indent_2 {
+#vfnvdkjodm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rgebydjcby .gt_indent_3 {
+#vfnvdkjodm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rgebydjcby .gt_indent_4 {
+#vfnvdkjodm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rgebydjcby .gt_indent_5 {
+#vfnvdkjodm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rgebydjcby .katex-display {
+#vfnvdkjodm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rgebydjcby div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vfnvdkjodm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1091,9 +1101,29 @@ summary(aov(v4 ~ Grade, data = all.data))
 ## Residuals   81 140.73  1.7374
 ```
 
+
+```r
+knitr::include_graphics("images/1_1.png")
+```
+
+<div class="figure">
+<img src="images/1_1.png" alt="plot of chunk unnamed-chunk-14" width="2736" />
+<p class="caption">plot of chunk unnamed-chunk-14</p>
+</div>
+
 Accordingly, Table 2 presents the results from the analysis of the mean differences between internal and external framing on a given manipulation, alongside the mean differences for pooled data (pooling all internal scores and external scores respectively, to detect a difference on the global level). Critically, we analyze the data at both the individual and global level to avoid a reversal paradox (sometimes referred to as Simpson’s paradox), and to account for potential nesting in our data (Blyth, 1972). This bears a variety of notable statistical metrics worth highlighting. To begin, the pooled results do not reflect a significant effect of control-based framing on self-reported satisfaction. Specifically, while internally-framed questions produced higher levels of self-reported satisfaction (M = 3.9, SD = 1.3) than externally-framed questions, t(334) = 2.31, the p-value is insignificant at p = .02 (compared to our Bonferroni-corrected significance level of α = .0125).
 
 Granular examination of the data at the level of each individual manipulation reveals further inconsistencies. In Manipulation 1, the internally-framed variant produced levels of self-reported satisfaction (M = 4.4, SD = 0.8) insignificantly lower than its externally-framed counterpart, t(82) = -0.42, p = .674. In Manipulation 2, the internally-framed variant produced insignificantly higher levels of satisfaction compared to its externally-framed counterpart (M = 4.1, SD = 0.8), t(82) = 1.6, p = .117. And in Manipulation 4, the internally-framed variant again produced insignificantly lower levels of satisfaction (M = 3.2, SD = 1.3), t(82) = -0.29, p = .772. The only manipulation which resulted in a statistically significant effect was Manipulation 3. Said manipulation produced the effect in the direction of our hypothesis (M = 3.7, SD = 1.2), t(82) = 4.06, p < 0.001. A final equal-variance two-sample t-test in absence of that manipulation mirrors this broader pattern of the insignificance of control-based framing. Here, the pooled data for internal framing in Manipulations 1, 2, and 4 are not significantly different from their externally framed counterparts (M = 3.92, SD = 1.1), t(250) = 0.23, p = .817.
+
+
+```r
+knitr::include_graphics("images/1_2.png")
+```
+
+<div class="figure">
+<img src="images/1_2.png" alt="plot of chunk unnamed-chunk-15" width="2736" />
+<p class="caption">plot of chunk unnamed-chunk-15</p>
+</div>
 
 We subsequently apply one last series of subgroup tests, as to ensure that demographic differences are not responsible for the aforementioned results. Specifically, we test for significant differences in aggregate self-reported satisfaction scores, on the level of the two demographic variables we collect (gender and class year). We do so by applying a one-way analysis of variance test on the level of each manipulation, grouped by the relevant demographic variable. Here, we find no significant difference along either of the demographic variables, as presented in Table 3; therefore, we conclude that demographic differences in gender and class year do not account for the observed effects in our primary analysis.
 
@@ -1186,7 +1216,7 @@ final_plot <- (plot1 + plot2 + plot3 + plot4) +
 print(final_plot)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png)
 
 ```r
 ggsave("box00.png", final_plot)
@@ -1233,7 +1263,7 @@ scatter_plot_grid <- wrap_plots(scatterplots, ncol = 4) +
 print(scatter_plot_grid)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png)
 
 ```r
 ggsave("scatterplots_grid.png", scatter_plot_grid, width = 10, height = 8, units = "in", dpi = 800)
